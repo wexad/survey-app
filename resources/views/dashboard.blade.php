@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Asosiy oyna') }}
         </h2>
     </x-slot>
 
@@ -12,16 +12,16 @@
                     <div class="mt-6">
                         <a href="{{ route('surveys.create') }}"
                            class="inline-block bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
-                            Create New Survey
+                            Yangi anketa yaratish
                         </a>
                     </div>
                     <div class="mt-6">
                         <table class="min-w-full bg-white shadow-md rounded-lg">
                             <thead>
                             <tr class="text-left">
-                                <th class="px-4 py-2 border-b">Survey Name</th>
-                                <th class="px-4 py-2 border-b">Survey Link</th>
-                                <th class="px-4 py-2 border-b">Survey Statistics</th>
+                                <th class="px-4 py-2 border-b">Anketa nomi</th>
+                                <th class="px-4 py-2 border-b">Link</th>
+                                <th class="px-4 py-2 border-b">Statistika</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -30,13 +30,13 @@
                                 <td class="px-4 py-2 border-b">{{ $survey->title }}</td>
                                 <td class="px-4 py-2 border-b">
                                     <a href="{{ url('/form/' . $survey->id) }}" class="text-blue-500 hover:underline">
-                                        Go to Form
+                                        Formaga kirish
                                     </a>
                                 </td>
                                 <td class="px-4 py-2 border-b">
                                     <a href="{{ url('/form/' . $survey->id . '/statistic') }}"
                                        class="text-blue-500 hover:underline">
-                                        Go to Statistics
+                                        Statistikalarni ko'rish
                                     </a>
                                 </td>
                             </tr>

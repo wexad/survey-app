@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Statistics for: {{ $surveyTitle }}
+            {{ $surveyTitle }} uchun statistika
         </h2>
     </x-slot>
 
@@ -13,7 +13,7 @@
             <ul class="pl-4 list-disc text-gray-700">
                 @foreach($stat['options'] as $opt)
                 <li>
-                    {{ $opt['answer'] }} — {{ $opt['count'] }} votes ({{ $opt['percentage'] }}%)
+                    {{ $opt['answer'] }} — {{ $opt['count'] }} ovoz ({{ $opt['percentage'] }}%)
                 </li>
                 @endforeach
             </ul>
