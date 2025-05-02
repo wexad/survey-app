@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\SurveyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +20,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [SurveyController::class, 'index'])->name('survey.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('surveys', SurveyController::class)->middleware('auth');
+    Route::get('/survey/add-question', [SurveyController::class, 'addQuestion'])->name('surveys.add-question');
+    Route::get('/surveys/create', [SurveyController::class, 'create'])->name('surveys.create');
+    Route::post('/surveys/store', [SurveyController::class, 'store'])->name('surveys.store');
+    Route::get('/survey/{surveyId}/add-question', [QuestionController::class, 'addQuestion'])->name('surveys.add-question');
+    Route::post('/surveys', [SurveyController::class, 'store'])->name('surveys.store');
+    Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
+    Route::get('/form/{surveyId}', [SurveyController::class, 'show'])->name('surveys.show');
+    Route::get('/form/{surveyId}/statistic', [SurveyController::class, 'showStatistics'])->name('surveys.statistic');
 });
 
-require __DIR__.'/auth.php';
+Route::post('/form/{surveyId}', [SurveyController::class, 'submit'])->name('surveys.submit');
+Route::get('/finish', [SurveyController::class, 'finish'])->name('finish');
+
+require __DIR__ . '/auth.php';
