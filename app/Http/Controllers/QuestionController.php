@@ -37,17 +37,12 @@ class QuestionController extends Controller
                 $option->text = $optionText;
                 $option->save();
             }
+            return redirect()->route('surveys.add-question', ['surveyId' => $validated['survey_id']])
+                ->with('status', 'Question added successfully!');
         }
         return redirect()->route('surveys.add-question', ['surveyId' => $validated['survey_id']])
             ->with('status', 'Question added successfully!');
     }
 
-    public function addQuestion($surveyId)
-    {
-        $survey = Survey::find($surveyId);
-        if (!$survey) {
-            return redirect()->route('surveys.index')->with('error', 'Survey not found.');
-        }
-        return view('surveys.add-question', ['surveyId' => $surveyId]);
-    }
+
 }

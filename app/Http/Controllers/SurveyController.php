@@ -118,4 +118,13 @@ class SurveyController extends Controller
         return view('finish');
     }
 
+    public function addQuestion($surveyId)
+    {
+        $survey = Survey::find($surveyId);
+        if (!$survey) {
+            return redirect()->route('survey.index')->with('error', 'Survey not found.');
+        }
+        return view('surveys.add-question', compact('survey'));
+    }
+
 }

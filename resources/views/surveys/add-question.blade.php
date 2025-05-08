@@ -9,7 +9,7 @@
         <div class="max-w-3xl mx-auto bg-white p-6 rounded shadow">
             <form method="POST" action="{{ route('questions.store') }}">
                 @csrf
-                <input type="hidden" name="survey_id" value="{{ $surveyId }}">
+                <input type="hidden" name="survey_id" value="{{ $survey->id }}">
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="text">Savol matni</label>
                     <input type="text" name="text" id="text" required
@@ -18,9 +18,9 @@
                 <div class="mb-4">
                     <label class="block text-sm font-medium text-gray-700" for="type">Savol turi</label>
                     <select name="type" id="type" required class="mt-1 block w-full border-gray-300 rounded shadow-sm">
-                        <option value="text">Text</option>
-                        <option value="single_choice">Single Choice</option>
-                        <option value="multiple_choice">Multiple Choice</option>
+                        <option value="text">Matn</option>
+                        <option value="single_choice">Bitta tanlov</option>
+                        <option value="multiple_choice">Bir nechta tanlov</option>
                     </select>
                 </div>
                 <div id="options-container" class="mb-4" style="display: none;">
@@ -70,7 +70,7 @@
             optionInput.innerHTML = `
                 <input type="text" name="options[]"
                        class="mt-1 block w-full border-gray-300 rounded shadow-sm" placeholder="Option">
-                <button type="button" class="remove-option bg-red-500 text-white px-2 py-1 rounded ml-2">Remove</button>
+                <button type="button" class="remove-option bg-red-500 text-white px-2 py-1 rounded ml-2">O'chirish</button>
             `;
             optionsDiv.appendChild(optionInput);
             optionInput.querySelector('.remove-option').addEventListener('click', () => {

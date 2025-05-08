@@ -29,8 +29,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('surveys', SurveyController::class); // Automatically handles CRUD (index, create, store, show, etc.)
-    Route::get('/survey/add-question', [SurveyController::class, 'addQuestion'])->name('surveys.add-question');
-    Route::get('/survey/{surveyId}/add-question', [QuestionController::class, 'addQuestion'])->name('questions.add-question');
+    Route::get('/survey/{surveyId}/add-question', [SurveyController::class, 'addQuestion'])->name('surveys.add-question');
     Route::post('/questions', [QuestionController::class, 'store'])->name('questions.store');
     Route::get('/form/{surveyId}/statistic', [SurveyController::class, 'showStatistics'])->name('surveys.statistic');
 });
